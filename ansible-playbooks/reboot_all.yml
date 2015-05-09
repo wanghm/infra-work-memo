@@ -1,0 +1,32 @@
+---
+# reboot_all.yml
+
+- name: reboot all hosts and wait it come back in port 22
+  hosts: all
+  remote_user: ec2-user
+  sudo: yes
+
+
+  tasks:
+    - name: hostname
+      command: uname -a
+      register: hostname
+    - debug: msg="{{hostname.stdout_lines}}"
+
+    - name: Restart server
+      command: shutdown -r now "Reboot triggered by Ansible"
+      async: 0
+      poll: 0
+      ignore_errors: true
+      notify: Wait for server to restart
+
+  handlers:
+    - name: Wait for server to restart
+      local_action:
+        module: wait_for
+          host={{ inventory_hostname }}
+          port=22
+          delay=1
+          timeout=300
+        #sudo: false
+

@@ -1,0 +1,18 @@
+# deploy_sshkeys.yml
+ 
+- name: deploy ssh pub keys
+  hosts: all
+  remote_user: ec2-user
+  sudo: yes
+  vars:
+    username: aaa
+ 
+  tasks:
+  - name: Set up authorized_keys for the deploy user
+    authorized_key: user="{{username}}"
+                    key="{{item}}"
+    with_file:
+      - xxx.pub
+      - yyy.pub
+      - zzz.pub
+
