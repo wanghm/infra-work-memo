@@ -12,7 +12,7 @@ fi
 
 ASG_NAME=$1
 
-#ASG_NAME=stg01-tky-performance2-heavyapi2-inventory-fr-asg
+#ASG_NAME=stg01-tky-xxxxxx-asg
 
 aws ec2 describe-instances --filters \
 "Name=tag:aws:autoscaling:groupName,Values=$ASG_NAME" \
@@ -22,7 +22,7 @@ aws ec2 describe-instances --filters \
 ### get IPs by ELB name
 
 ```
-ELB_NAME=stg-tky-perf2-hvy2-inventory-fr
+ELB_NAME=stg-tky-xxxxxx
 INSTANCE_ID=$(aws elb describe-instance-health --load-balancer-name $ELB_NAME --region ap-northeast-1 | jq '.InstanceStates[].InstanceId' | sed 's/\"//g')
 aws ec2 describe-instances --instance-ids $INSTANCE_ID --region ap-northeast-1 | jq '.Reservations[].Instances[].PrivateIpAddress'
 
