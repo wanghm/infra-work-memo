@@ -1,0 +1,59 @@
+## EC2
+
+#!/bin/bash
+namespace=AWS/EC2
+instance_id=i-XXXXXXX
+
+start_time="2014-05-14T04:00:00Z" 
+end_time="2014-05-14T10:30:00Z" 
+
+#period=300
+metric=${1:-CPUUtilization}
+
+aws cloudwatch get-metric-statistics \
+--namespace $namespace \
+--metric-name $metric \
+--start-time $start_time \
+--end-time $end_time \
+--period 300 \
+--statistics "Maximum" \
+--dimensions Name=InstanceId,Value=$instance_id \
+--output text | sort -k 3
+#--dimensions Name=InstanceId,Value=$instance_id | jq '.Datapoints | sort_by(.Timestamp)'
+
+
+# RDS
+
+export REGION=ap-northeast-1
+export AWS_DEFAULT_REGION=ap-northeast-1
+
+FROM_DATETIME="2015-04-14T06:00:00Z" 
+TO_DATETIME="2015-04-14T08:00:00Z" 
+RDS_INSTANCE="stg01-tky-kidscamera-uniqlo" 
+RDS_INSTANCE_READ="${RDS_INSTANCE}-read" 
+
+function get_metrics() {
+  #$1 - metrics name
+  #$2 - Instance name
+  #$3 - From datetime
+  #$4 - To datetime
+
+aws cloudwatch \
+get-metric-statistics \
+--namespace AWS/RDS \
+--metric-name $1 \
+--dimensions Name=DBInstanceIdentifier,Value=$2 \
+--start-time $3 \
+--end-time $4 \
+--period 60 --statistics "Maximum" \
+--output text |sort -k 3 > $1_$2.log
+
+}
+
+for metrics_name in CPUUtilization ReadIOPS WriteIOPS DatabaseConnections
+do
+  get_metrics ${metrics_name} ${RDS_INSTANCE} ${FROM_DATETIME} ${TO_DATETIME}
+  get_metrics ${metrics_name} ${RDS_INSTANCE_READ} ${FROM_DATETIME} ${TO_DATETIME}
+done
+
+###############################################
