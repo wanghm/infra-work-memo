@@ -22,7 +22,7 @@ aws ec2 describe-instances --filters \
 ### get IPs by ELB name
 
 ```
-ELB_NAME=stg-tky-xxxxxx
+ELB_NAME=xxxxxx
 INSTANCE_ID=$(aws elb describe-instance-health --load-balancer-name $ELB_NAME --region ap-northeast-1 | jq '.InstanceStates[].InstanceId' | sed 's/\"//g')
 aws ec2 describe-instances --instance-ids $INSTANCE_ID --region ap-northeast-1 | jq '.Reservations[].Instances[].PrivateIpAddress'
 
