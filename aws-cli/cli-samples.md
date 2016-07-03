@@ -12,7 +12,7 @@ fi
 
 ASG_NAME=$1
 
-#ASG_NAME=stg01-tky-xxxxxx-asg
+#ASG_NAME=xxxxxx-asg
 
 aws ec2 describe-instances --filters \
 "Name=tag:aws:autoscaling:groupName,Values=$ASG_NAME" \
