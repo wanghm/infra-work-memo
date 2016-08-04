@@ -33,3 +33,11 @@ aws ec2 describe-instances --instance-ids $INSTANCE_ID --region ap-northeast-1 |
 ```
 sudo curl -o /usr/local/bin/jq http://stedolan.github.io/jq/download/linux64/jq && sudo chmod +x /usr/local/bin/jq
 ```
+
+### security group
+
+```
+aws ec2 describe-security-groups --group-ids  sg-de0693a5 --region us-east-1|jq '.SecurityGroups[].IpPermissions[].IpRanges[].CidrIp'
+```
+
+
