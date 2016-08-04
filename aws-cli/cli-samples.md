@@ -37,7 +37,7 @@ sudo curl -o /usr/local/bin/jq http://stedolan.github.io/jq/download/linux64/jq 
 ### security group
 
 ```
-aws ec2 describe-security-groups --group-ids  sg-de0693a5 --region us-east-1|jq '.SecurityGroups[].IpPermissions[].IpRanges[].CidrIp'
+aws ec2 describe-security-groups --group-ids  sg-xxxxxxxx --region us-east-1|jq '.SecurityGroups[].IpPermissions[].IpRanges[].CidrIp'
 ```
 
 
