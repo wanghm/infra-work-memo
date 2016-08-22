@@ -2,13 +2,14 @@
 
 ````
 free && sync && echo 3 > /proc/sys/vm/drop_caches && free
- ````
+````
  
-### To free pagecache:
+#### To free pagecache:
 
 # echo 1 > /proc/sys/vm/drop_caches
 
-### To free dentries and inodes:
+
+#### To free dentries and inodes:
 
 ````
 # echo 2 > /proc/sys/vm/drop_caches
