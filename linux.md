@@ -28,3 +28,12 @@ free && sync && echo 3 > /proc/sys/vm/drop_caches && free
 ````
  find . -type d -empty -delete
 ````
+
+## Jenkins RestAPI
+
+````
+curl -i -u USERNAME:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -s -S \
+--data-urlencode PARAM1=aaaa \
+--data-urlencode PARAM2=bbbb \
+https://xxx.xxx.xxx.xxx/JOBNAME/buildWithParameters?delay=0sec&token=xxxxxxxx
+````
