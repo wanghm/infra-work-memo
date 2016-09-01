@@ -40,4 +40,18 @@ sudo curl -o /usr/local/bin/jq http://stedolan.github.io/jq/download/linux64/jq 
 aws ec2 describe-security-groups --group-ids  sg-xxxxxxxx --region us-east-1|jq '.SecurityGroups[].IpPermissions[].IpRanges[].CidrIp'
 ```
 
+### ELB log format
+
+* timestamp
+* elb
+* client:port
+* backend:port
+* request_processing_time
+* backend_processing_time
+* response_processing_time
+* elb_status_code
+* backend_status_code
+* received_bytes
+* sent_bytes
+* request
 
