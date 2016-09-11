@@ -55,3 +55,13 @@ aws ec2 describe-security-groups --group-ids  sg-xxxxxxxx --region us-east-1|jq 
 * sent_bytes
 * request
 
+### SES
+
+````
+aws ses send-email \
+--from aaaaa@xxx.xxx.xxx \
+--to bbbbb@bbbbb.com \
+--subject "title" \
+--text "test-body"  \
+--region us-east-1
+````
