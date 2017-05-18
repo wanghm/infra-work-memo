@@ -65,3 +65,10 @@ aws ses send-email \
 --text "test-body"  \
 --region us-east-1
 ````
+
+### RDS
+
+get RDS list
+```
+aws rds describe-db-instances --region=ap-northeast-1 |jq -r '.DBInstances[] |{DBInstanceIdentifier,DBInstanceClass,MultiAZ,AllocatedStorage}|@text "\(.DBInstanceIdentifier)\t\(.DBInstanceClass)\t\(.MultiAZ)\t\(.AllocatedStorage)"'
+```
