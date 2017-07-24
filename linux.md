@@ -56,3 +56,5 @@ openssl s_client -connect example.com:443 < /dev/null 2> /dev/null | openssl x50
 openssl x509 -text -noout -in {certificate_file}
 
 
+ftps
+```openssl s_client -showcerts -connect  <xxx.xxx.xxx.xxx>:21 -starttls ftp```
