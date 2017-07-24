@@ -51,9 +51,9 @@ mvn --version
 
 Confirm Expiredate of SSL certificate
 ```
-openssl s_client -connect example.com:443 < /dev/null 2> /dev/null | openssl x509 -text | grep Not```
-
+openssl s_client -connect example.com:443 < /dev/null 2> /dev/null | openssl x509 -text | grep Not
 openssl x509 -text -noout -in {certificate_file}
+```
 
 
 ftps
