@@ -59,3 +59,10 @@ openssl x509 -text -noout -in {certificate_file}
 ftps
 ```
 openssl s_client -showcerts -connect  <xxx.xxx.xxx.xxx>:21 -starttls ftp```
+
+## 
+
+Get IP ranges of AWS S3 (Tokyo region)
+```
+curl -s https://ip-ranges.amazonaws.com/ip-ranges.json | jq '.prefixes[] | if .region == "ap-northeast-1" and .service == "S3"  then . else empty end'
+```
