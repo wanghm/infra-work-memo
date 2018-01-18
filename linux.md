@@ -60,7 +60,7 @@ ftps
 ```
 openssl s_client -showcerts -connect  <xxx.xxx.xxx.xxx>:21 -starttls ftp```
 
-## 
+## jq
 
 Get IP ranges of AWS S3 (Tokyo region)
 ```
