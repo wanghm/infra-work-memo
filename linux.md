@@ -58,7 +58,8 @@ openssl x509 -text -noout -in {certificate_file}
 
 ftps
 ```
-openssl s_client -showcerts -connect  <xxx.xxx.xxx.xxx>:21 -starttls ftp```
+openssl s_client -showcerts -connect  <xxx.xxx.xxx.xxx>:21 -starttls ftp
+```
 
 ## jq
 
