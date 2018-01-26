@@ -72,3 +72,8 @@ get RDS list
 ```
 aws rds describe-db-instances --region=ap-northeast-1 |jq -r '.DBInstances[] |{DBInstanceIdentifier,DBInstanceClass,MultiAZ,AllocatedStorage}|@text "\(.DBInstanceIdentifier)\t\(.DBInstanceClass)\t\(.MultiAZ)\t\(.AllocatedStorage)"'
 ```
+### get launched instance ID by Cloudtrail Event
+
+```
+aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=RunInstances --start-time "2018-01-26, 00:00 AM" --end-time "2018-01-26, 12:59 PM"  --region us-east-1 | jq '.Events[].Resources[].ResourceName'|egrep '^"i-'|sort|uniq
+```
