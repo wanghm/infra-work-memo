@@ -67,3 +67,9 @@ Get IP ranges of AWS S3 (Tokyo region)
 ```
 curl -s https://ip-ranges.amazonaws.com/ip-ranges.json | jq '.prefixes[] | if .region == "ap-northeast-1" and .service == "S3"  then . else empty end'
 ```
+
+## Customiz Query of Redmine
+
+```
+https://redmine.xxxxxxxxxx.com/projects/ppppppp/issues?set_filter=1&f[]=closed_on&op[closed_on]=><&v[closed_on][]=2018-05-23&v[closed_on][]=2018-05-29&f[]=&c[]=updated_on&c[]=category&c[]=subject&c[]=status&c[]=priority&c[]=done_ratio&c[]=assigned_to&c[]=created_on&c[]=due_date&group_by=
+```
