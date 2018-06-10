@@ -77,3 +77,13 @@ aws rds describe-db-instances --region=ap-northeast-1 |jq -r '.DBInstances[] |{D
 ```
 aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=RunInstances --start-time "2018-01-26, 00:00 AM" --end-time "2018-01-26, 12:59 PM"  --region us-east-1 | jq '.Events[].Resources[].ResourceName'|egrep '^"i-'|sort|uniq
 ```
+
+### get list of running EC2 instances (with instancetype, IPs, tags)
+
+```
+aws ec2 describe-instances --region us-west-1 \
+--filter "Name=instance-state-name,Values=running" \
+--query 'Reservations[].Instances[].{PrivateIp:PrivateIpAddress,InstanceId:InstanceId,InstanceType:InstanceType,Name:Tags[?Key==`Name`].Value,Service:Tags[?Key==`Service`].Value}' \
+--output text
+```
+
