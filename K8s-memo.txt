@@ -1,0 +1,8 @@
+
+https://learnk8s.io/blog/smaller-docker-images
+
+1. Squash multiple layers into one with multi-stage Docker builds
+2. Remove all the unnecessary cruft from the container with distroless
+3. Smaller base images with Alpine
+
+https://qiita.com/MahoTakara/items/85096f8b2632c802ab22
