@@ -87,3 +87,8 @@ aws ec2 describe-instances --region us-west-1 \
 --output text
 ```
 
+### get EC2 instance list without required TAG setting
+
+```
+aws ec2 describe-instances --query 'Reservations[].Instances[?Tags[?Key==`TAG_KEY_NAME`].Value|[0]==null][].{InstanceId:InstanceId,Tags:Tags[?Key==`Name`].Value|[0],InstanceType:InstanceType,State:State.Name,Ip:PrivateIpAddress,AZ:Placement.AvailabilityZone,Platform:Platform}' --output table
+```
