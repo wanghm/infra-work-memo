@@ -73,3 +73,8 @@ curl -s https://ip-ranges.amazonaws.com/ip-ranges.json | jq '.prefixes[] | if .r
 ```
 https://redmine.xxxxxxxxxx.com/projects/ppppppp/issues?set_filter=1&f[]=closed_on&op[closed_on]=><&v[closed_on][]=2018-05-23&v[closed_on][]=2018-05-29&f[]=&c[]=updated_on&c[]=category&c[]=subject&c[]=status&c[]=priority&c[]=done_ratio&c[]=assigned_to&c[]=created_on&c[]=due_date&group_by=
 ```
+
+### Generate random MAC address 
+```
+openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
+```
