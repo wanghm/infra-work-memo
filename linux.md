@@ -78,3 +78,8 @@ https://redmine.xxxxxxxxxx.com/projects/ppppppp/issues?set_filter=1&f[]=closed_o
 ```
 openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 ```
+
+### Tree
+````
+pwd;find . | sort | sed '1d;s/^\.//;s/\/\([^/]*\)$/|--\1/;s/\/[^/|]*/|  /g'
+````
