@@ -1,0 +1,19 @@
+#cloud-config
+
+disable_root: false
+ssh_pwauth: true
+package_upgrade: false
+
+users:
+- name: centos
+  shell: /bin/bash
+  sudo: ['ALL=(ALL) NOPASSWD:ALL']
+  passwd: xxxxxxxxxxxx
+  lock_passwd: false
+
+yum_repos:
+  epel:
+    baseurl: http://download.fedoraproject.org/pub/epel/7/$basearch
+    name: Extra Packages for Enterprise Linux 7 - $basearch
+    enabled: true
+    gpgcheck: false
