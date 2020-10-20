@@ -1,0 +1,4 @@
+aws rds describe-db-parameters --db-parameter-group-name temp-sqlserver --out json \
+| jq -r '["ParameterName","ParameterValue","Source","ApplyType","DataType","AllowedValues","IsModifiable","Description","MinimumEngineVersion","ApplyMethod"], (.Parameters[] | [.ParameterName,.ParameterValue,.Source,.ApplyType,.DataType,.AllowedValues,.IsModifiable,.Description,.MinimumEngineVersion,.ApplyMethod]) | @csv' \
+| iconv -t sjis \
+> rds-parameters.csv
