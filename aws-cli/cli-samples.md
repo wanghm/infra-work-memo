@@ -94,3 +94,8 @@ aws ec2 describe-instances \
 --query 'Reservations[].Instances[?Tags[?Key==`TAG_KEY_NAME`].Value|[0]==null][].{InstanceId:InstanceId,Tags:Tags[?Key==`Name`].Value|[0],InstanceType:InstanceType,State:State.Name,Ip:PrivateIpAddress,AZ:Placement.AvailabilityZone,Platform:Platform}' \
 --output text
 ```
+
+### get VPC list
+```
+aws ec2 describe-vpcs --region us-west-2 --profile xxxxxxxx | jq '.Vpcs[] | [.CidrBlock, .IsDefault]'
+```
